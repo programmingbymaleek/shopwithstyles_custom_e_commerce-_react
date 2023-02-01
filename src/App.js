@@ -13,7 +13,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="" element={<Navigation />}>
+      <Route path="/" element={<Navigation />}>
         <Route index={true} element={<HeroBanner />} />
         <Route path="/authentication" element={<Authentication />} />
         <Route path="/collections" element={<Collections />} />
