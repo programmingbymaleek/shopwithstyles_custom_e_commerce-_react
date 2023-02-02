@@ -8,22 +8,37 @@ import MenSize from "../../shoe-sizes-data.json";
 
 import { useState } from "react";
 import { act } from "react-dom/test-utils";
+import { CreateCartContext } from "../../contexts/cart.context";
 
 function ProductOverView() {
+  const [error, setError] = useState("");
+  const { productToView, incrementItem, decrementItem } = useContext(
+    ProductQuickViewContext
+  );
+  const { addItemToCart } = useContext(CreateCartContext);
+
   const [active, setInActive] = useState(false);
-  const isnowClicked = () => {
-    setInActive(!active);
-    console.log(`btn clicked  ${active}`);
+
+  const isnowClicked = (e) => {
+    const setSize = e.target.value;
+    productToView.size = setSize;
+    console.log(productToView);
   };
   const Navigate = useNavigate();
   const goBackToCollections = () => {
     Navigate("/collections");
   };
-  const { productToView, incrementItem, decrementItem } = useContext(
-    ProductQuickViewContext
-  );
+
   const { name, price, quantity, id, imageUrl } = productToView;
-  console.log(productToView);
+
+  const addCartItem = () => {
+    if (productToView.size === "") {
+      setError("Please select a size");
+      return;
+    }
+    addItemToCart(productToView);
+  };
+
   if (!productToView.id) {
     return (
       <div>
@@ -73,17 +88,20 @@ function ProductOverView() {
               type={"button"}
               btn_label={"Add to cart"}
               btntype="inverted"
+              onClick={addCartItem}
             />
           </div>
           <br />
+          <div>
+            {error ? (
+              <p style={{ color: "red", fontWeight: "bold" }}>{error}</p>
+            ) : (
+              ""
+            )}
+          </div>
           <div className="size">
             {MenSize.mens.map((size) => (
-              <button
-                key={size}
-                onClick={() => {
-                  isnowClicked();
-                }}
-              >
+              <button key={size} onClick={isnowClicked} value={size}>
                 {size}
               </button>
             ))}

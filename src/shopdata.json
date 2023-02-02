@@ -1,56 +1,65 @@
 [
   {
-    "id":"1", 
+    "id": "1",
     "name": "Coffee shoe",
-    "imageUrl":"https://i.postimg.cc/4ygWMS7G/mendress2.png",
-    "price": 120
+    "imageUrl": "https://i.postimg.cc/4ygWMS7G/mendress2.png",
+    "price": 120,
+    "size": ""
   },
   {
-    "id":"2", 
+    "id": "2",
     "name": "Brown Mike",
-    "imageUrl":"https://i.postimg.cc/ry1nWM3w/mendress3.png",
-    "price": 150
+    "imageUrl": "https://i.postimg.cc/ry1nWM3w/mendress3.png",
+    "price": 150,
+    "size": ""
   },
   {
-    "id":"3", 
+    "id": "3",
     "name": "superior",
-    "imageUrl":"https://i.postimg.cc/D0PxKPLX/mendress4.png",
-    "price": 300
+    "imageUrl": "https://i.postimg.cc/D0PxKPLX/mendress4.png",
+    "price": 300,
+    "size": ""
   },
   {
-    "id":"4", 
+    "id": "4",
     "name": "Boss Man",
-    "imageUrl":"https://i.postimg.cc/tg8SdT9Y/mensdress5.png",
-    "price": 480
+    "imageUrl": "https://i.postimg.cc/tg8SdT9Y/mensdress5.png",
+    "price": 480,
+    "size": ""
   },
   {
-    "id":"5", 
+    "id": "5",
     "name": "Red Suede",
-    "imageUrl":"https://i.postimg.cc/0NzXJmRT/maleek-men-dress-shoes-red-suede-af32c9f1-f82a-4335-b6af-9e6ee62cd41b.png",
-    "price": 120
+    "imageUrl": "https://i.postimg.cc/0NzXJmRT/maleek-men-dress-shoes-red-suede-af32c9f1-f82a-4335-b6af-9e6ee62cd41b.png",
+    "price": 120,
+    "size": ""
   },
   {
-    "id":"6", 
+    "id": "6",
     "name": "Addidas Style",
-    "imageUrl":"https://i.postimg.cc/856Z5SQM/addidas1.png",
-    "price": 80
+    "imageUrl": "https://i.postimg.cc/856Z5SQM/addidas1.png",
+    "price": 80,
+    "size": ""
   },
   {
-    "id":"7", 
+    "id": "7",
     "name": "Addidas Props",
-    "imageUrl":"https://i.postimg.cc/g0rMChgM/addidas2.png",
-    "price": 78
+    "imageUrl": "https://i.postimg.cc/g0rMChgM/addidas2.png",
+    "price": 78,
+    "size": ""
   },
   {
-    "id":"8", 
+    "id": "8",
     "name": "Addidas Classic",
-    "imageUrl":"https://i.postimg.cc/ZnzVvM4g/arnode1.png",
-    "price": 95
+    "imageUrl": "https://i.postimg.cc/ZnzVvM4g/arnode1.png",
+    "price": 95,
+    "size": ""
   },
   {
-    "id":"9", 
+    "id": "9",
     "name": "Mayo J",
-    "imageUrl":"https://i.postimg.cc/rs5ZhLfM/arnord2.png",
-    "price": 67
+    "imageUrl": "https://i.postimg.cc/rs5ZhLfM/arnord2.png",
+    "price": 67,
+    "size": ""
   }
 ]

@@ -8,10 +8,18 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useContext } from "react";
 import { User_Context } from "../../contexts/user.context.component";
 import { SignOutUser } from "../../utils/firebase/firebase.utils";
+import { ReactComponent as CartIcon } from "../../assests/shopping-cart.svg";
+import CartDropDown from "../../components/cart-dropdown.component/cart-dropdown";
+import { CreateCartContext } from "../../contexts/cart.context";
 
 function Navigation() {
   const Navigate = useNavigate();
   const { currentUser } = useContext(User_Context);
+  const { toggleCart, setToggleCart } = useContext(CreateCartContext);
+
+  const toggleCartContainer = () => {
+    setToggleCart(!toggleCart);
+  };
   return (
     <NavigationContainer>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -78,10 +86,20 @@ function Navigation() {
                   Sign In
                 </Nav.Link>
               )}
-              <Nav.Link eventKey={2}>Cart</Nav.Link>
+
+              <Nav.Link eventKey={2}>
+                <div className="cart-icon-container">
+                  <CartIcon
+                    className="shopping-icon"
+                    onClick={toggleCartContainer}
+                  />
+                  <span className="item-count">0</span>
+                </div>
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
+        {toggleCart && <CartDropDown />}
       </Navbar>
       <Outlet />
     </NavigationContainer>
@@ -92,9 +110,37 @@ export default Navigation;
 
 const NavigationContainer = styled.div`
   .custom-nav-links {
-    color:#212529!important;
+    color: #212529 !important;
   }
   .custom-nav-links:hover {
     background-color: #212529;
-    color:white !important; 
+    color: white !important;
+  }
+
+  .cart-icon-container {
+    width: 45px;
+    height: 45px;
+    top: -0.6rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    .shopping-icon {
+      width: 34px;
+      height: 34px;
+    }
+
+    .shopping-icon:hover {
+      color: white !important;
+    }
+
+    .item-count {
+      position: absolute;
+      font-size: 10px;
+      font-weight: bold;
+      bottom: 12px;
+    }
+  }
 `;

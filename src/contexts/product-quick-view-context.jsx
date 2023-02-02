@@ -14,8 +14,10 @@ const itemToDecrement = (productTo_decrement) => {
     : { ...productTo_decrement };
 };
 export const ProductQuickViewContext = createContext({
-  productToView: {},
+  productToView: null,
   setProductToView: () => {},
+  size: {},
+  setSize: () => {},
 });
 
 export const ProductQuickViewProvider = ({ children }) => {
@@ -32,6 +34,7 @@ export const ProductQuickViewProvider = ({ children }) => {
     incrementItem,
     decrementItem,
   };
+  console.log(productToView);
   return (
     <ProductQuickViewContext.Provider value={value}>
       {children}

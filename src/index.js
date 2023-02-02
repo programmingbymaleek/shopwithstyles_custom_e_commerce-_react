@@ -8,6 +8,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { User_Context_Provider } from "./contexts/user.context.component";
 import { Product_context_Provider } from "./contexts/product.context.component";
 import { ProductQuickViewProvider } from "./contexts/product-quick-view-context";
+import { CartContextProvider } from "./contexts/cart.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,7 +17,9 @@ root.render(
       <User_Context_Provider>
         <Product_context_Provider>
           <ProductQuickViewProvider>
-            <App />
+            <CartContextProvider>
+              <App />
+            </CartContextProvider>
           </ProductQuickViewProvider>
         </Product_context_Provider>
       </User_Context_Provider>
