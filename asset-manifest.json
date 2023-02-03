@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/static/css/main.3f5423e3.css",
-    "main.js": "/static/js/main.e7e93758.js",
+    "main.js": "/static/js/main.248fe36c.js",
     "static/js/787.08094ffa.chunk.js": "/static/js/787.08094ffa.chunk.js",
     "static/media/bg_shoes.gif": "/static/media/bg_shoes.3694ca1216bdd577c987.gif",
     "static/media/google_logo.png": "/static/media/google_logo.6bc7d49355c4e25579a0.png",
     "static/media/shopping-cart.svg": "/static/media/shopping-cart.966279421fd54109d8d172efe3af1879.svg",
     "index.html": "/index.html",
     "main.3f5423e3.css.map": "/static/css/main.3f5423e3.css.map",
-    "main.e7e93758.js.map": "/static/js/main.e7e93758.js.map",
+    "main.248fe36c.js.map": "/static/js/main.248fe36c.js.map",
     "787.08094ffa.chunk.js.map": "/static/js/787.08094ffa.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3f5423e3.css",
-    "static/js/main.e7e93758.js"
+    "static/js/main.248fe36c.js"
   ]
 }
