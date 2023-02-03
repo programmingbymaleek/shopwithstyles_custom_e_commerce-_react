@@ -15,7 +15,8 @@ import { CreateCartContext } from "../../contexts/cart.context";
 function Navigation() {
   const Navigate = useNavigate();
   const { currentUser } = useContext(User_Context);
-  const { toggleCart, setToggleCart } = useContext(CreateCartContext);
+  const { toggleCart, setToggleCart, cartCount } =
+    useContext(CreateCartContext);
 
   const toggleCartContainer = () => {
     setToggleCart(!toggleCart);
@@ -93,7 +94,7 @@ function Navigation() {
                     className="shopping-icon"
                     onClick={toggleCartContainer}
                   />
-                  <span className="item-count">0</span>
+                  <span className="item-count">{cartCount}</span>
                 </div>
               </Nav.Link>
             </Nav>

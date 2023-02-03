@@ -7,6 +7,7 @@ import Collections from "./components/collections/collection.component";
 import ProductOverView from "./components/product-overview-component/product-overview";
 import { useContext } from "react";
 import { Product_Context } from "./contexts/product.context.component";
+import ItemCheckOut from "./components/ItemCheckOut-component/ItemCheckOut";
 
 function App() {
   const { productOverView } = useContext(Product_Context);
@@ -18,6 +19,7 @@ function App() {
         <Route path="/authentication" element={<Authentication />} />
         <Route path="/collections" element={<Collections />} />
         <Route path={`/collectons/productview`} element={<ProductOverView />} />
+        <Route path={`/checkout-items`} element={<ItemCheckOut />} />
       </Route>
     </Routes>
   );

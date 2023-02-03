@@ -10,7 +10,7 @@ function Collections() {
   const Navigate = useNavigate();
 
   return (
-    <Collections_Cards>
+    <Collections_Cards className="container">
       <div className="collections-container">
         {productCollections.map((collection) => {
           return (

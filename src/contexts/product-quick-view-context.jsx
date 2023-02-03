@@ -18,6 +18,8 @@ export const ProductQuickViewContext = createContext({
   setProductToView: () => {},
   size: {},
   setSize: () => {},
+  incrementItem: () => {},
+  decrementItem: () => {},
 });
 
 export const ProductQuickViewProvider = ({ children }) => {

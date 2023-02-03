@@ -12,6 +12,7 @@ import { CreateCartContext } from "../../contexts/cart.context";
 
 function ProductOverView() {
   const [error, setError] = useState("");
+  const [shoeSize, setShoeSize] = useState("");
   const { productToView, incrementItem, decrementItem } = useContext(
     ProductQuickViewContext
   );
@@ -22,6 +23,8 @@ function ProductOverView() {
   const isnowClicked = (e) => {
     const setSize = e.target.value;
     productToView.size = setSize;
+    setShoeSize(setSize);
+    setError("");
     console.log(productToView);
   };
   const Navigate = useNavigate();
@@ -47,12 +50,12 @@ function ProductOverView() {
     );
   }
   return (
-    <Product_overview_container>
+    <Product_overview_container className="container">
       <div className="product_container" key={id}>
-        <div className="product_image grid-col-span-2">
+        <div className="product_image-conatiner">
           <img src={`${imageUrl}`} alt={`${name}`} />
         </div>
-        <div className="product_overview grid-col-span-3 ">
+        <div className="product_overview">
           <h1>{name}</h1>
           <h2>{`$${price}.00`}</h2>
           <p>$40 OFF your qualifing first order of $20</p>
@@ -64,6 +67,10 @@ function ProductOverView() {
           <br />
           <br />
           <div className="qantity_adjustment">
+            <p className="select">
+              Select Quantity: <span className="p-quantity">{quantity}</span>{" "}
+            </p>
+
             <div className="btn_container">
               <button
                 className="left"
@@ -84,19 +91,15 @@ function ProductOverView() {
                 +
               </button>
             </div>
-            <CustomButton
-              type={"button"}
-              btn_label={"Add to cart"}
-              btntype="inverted"
-              onClick={addCartItem}
-            />
           </div>
           <br />
           <div>
             {error ? (
               <p style={{ color: "red", fontWeight: "bold" }}>{error}</p>
             ) : (
-              ""
+              <p className="select">
+                Select Your Size: <span className="p-quantity">{shoeSize}</span>
+              </p>
             )}
           </div>
           <div className="size">
@@ -106,26 +109,13 @@ function ProductOverView() {
               </button>
             ))}
           </div>
+          <CustomButton
+            type={"button"}
+            btn_label={"Add to cart"}
+            btntype="inverted"
+            onClick={addCartItem}
+          />
         </div>
-
-        {/* <p>Name of product : {name}</p>
-      <p>Unit Price of product: {price}</p>
-      <p> Quantity: {quantity}</p>
-      <button
-        onClick={() => {
-          decrementItem(productToView);
-        }}
-      >
-        decrement
-      </button>
-      <span>___</span>{" "}
-      <button
-        onClick={() => {
-          incrementItem(productToView);
-        }}
-      >
-        increment
-      </button> */}
       </div>
     </Product_overview_container>
   );
@@ -134,14 +124,32 @@ function ProductOverView() {
 export default ProductOverView;
 
 const Product_overview_container = styled.div`
+
+.select{
+  color:#7C0F00;
+  font-weight:bold;
+  
+  span{
+    font-weight:bold;
+
+    border:none !important;
+  }
+}
+
   .product_container {
-    padding: 3rem 3rem 0 5rem;
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(5, 1fr);
-    .button-container {
-      min-width: 250px !important;
-      border-radius: 20px;
+    padding:2rem 2rem;
+    display:flex;
+    gap:5%;
+    
+    .product_image-conatiner{
+      max-width:60%; 
+      // max-height:60rem;
+      img{
+        width:100%;
+        // height:100%;
+        object-fit:fill;
+      }
+    }
     }
     .size {
       button {
@@ -150,30 +158,13 @@ const Product_overview_container = styled.div`
       }
     }
   }
-  .grid-col-span-2 {
-    grid-column: span 3;
-  }
-  .grid-col-span-3 {
-    grid-column: span 2;
-  }
+ 
+
   .product_image {
-    max-width: 55rem;
-    max-height: 45rem;
-    // border: 2px solid red;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: fit;
-    }
+   
   }
   .product_overview {
-    max-width: 40rem;
-    height: 65rem;
-    // border: 1px solid blue;
-    padding: 1rem;
-    grid-column-start: 4;
-    grid-column-end: 6;
-    grid-row-start: 1;
+    
 
     button {
       width: 3rem !important;
@@ -182,9 +173,12 @@ const Product_overview_container = styled.div`
       background: none;
     }
 
-    .qantity_adjustment {
-      display: flex;
-      gap: 4rem;
+    .qantity_adjustment {      
+      p{
+       
+      }
+    
+      
       .btn_container {
       }
       span {

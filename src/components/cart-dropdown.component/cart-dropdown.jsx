@@ -3,19 +3,31 @@ import styled from "styled-components";
 import CustomButton from "../button.component/button.component";
 import { useContext } from "react";
 import { CreateCartContext } from "../../contexts/cart.context";
+import CartItem from "../cart-items/cart-items";
+import { useNavigate } from "react-router-dom";
 
 function CartDropDown() {
   const { cartItems } = useContext(CreateCartContext);
+
+  const navigate = useNavigate();
+
+  const gotoCheckoutPage = () => {
+    navigate("/checkout-items");
+  };
 
   return (
     <CartDropDownContainer>
       <div className="cart-dropdown-container">
         <div className="cart-items">
           {cartItems.map((cartItem) => {
-            return <p key={cartItem}>{cartItem.id}</p>;
+            return (
+              <div key={cartItem.id}>
+                <CartItem cartItem={cartItem} />
+              </div>
+            );
           })}
         </div>
-        <CustomButton btn_label={"Check out"} />
+        <CustomButton btn_label={"Check out"} onClick={gotoCheckoutPage} />
       </div>
     </CartDropDownContainer>
   );
