@@ -18,8 +18,6 @@ function ProductOverView() {
   );
   const { addItemToCart } = useContext(CreateCartContext);
 
-  const [active, setInActive] = useState(false);
-
   const isnowClicked = (e) => {
     const setSize = e.target.value;
     productToView.size = setSize;
@@ -40,6 +38,7 @@ function ProductOverView() {
       return;
     }
     addItemToCart(productToView);
+    // Navigate("/checkout-items");
   };
 
   if (!productToView.id) {
