@@ -17,9 +17,28 @@ const addCartItem = (cartItems, productToadd) => {
   return [...cartItems, { ...productToadd }];
 };
 
-const deletItem = (cartItems, product_To_Delete_id) => {
-  cartItems.filter((cartItem) => {
-    return cartItem.id !== product_To_Delete_id;
+const incrementItem = (cartItems, product_increment_id) => {
+  return cartItems.map((item) =>
+    item.id === product_increment_id
+      ? { ...item, quantity: (item.quantity += 1) }
+      : item
+  );
+};
+
+const decrementItem = (cartItems, product_to_decrement) => {
+  return cartItems.map((item) =>
+    (item.id === product_to_decrement.id) & (product_to_decrement.quantity > 1)
+      ? { ...item, quantity: (item.quantity -= 1) }
+      : item
+  );
+};
+
+const deletItem = (cartItems, product_To_Delete) => {
+  return cartItems.filter((cartItem) => {
+    return (
+      cartItem.id !== product_To_Delete.id ||
+      cartItem.quantity !== product_To_Delete.quantity
+    );
   });
 };
 export const CreateCartContext = createContext({
@@ -29,6 +48,8 @@ export const CreateCartContext = createContext({
   addItemToCart: () => {},
   cartCount: 0,
   deleteCartItem: () => {},
+  incrementCheckOutItem: () => {},
+  decrementCheckoutItem: () => {},
   total: 0,
 });
 export const CartContextProvider = ({ children }) => {
@@ -36,7 +57,6 @@ export const CartContextProvider = ({ children }) => {
   const [cartItems, setCartItem] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [total, setTotal] = useState(0);
-  console.log(cartItems);
 
   //counting item in the added to the cart..
 
@@ -57,22 +77,31 @@ export const CartContextProvider = ({ children }) => {
   }, [cartCount]);
 
   const addItemToCart = (productToadd) => {
-    console.log(productToadd);
     setCartItem(addCartItem(cartItems, productToadd));
   };
 
-  const deleteCartItem = (product_To_Delete_id) => {
-    setCartItem(deletItem(cartItems, product_To_Delete_id));
+  const incrementCheckOutItem = (product_increment_id) => {
+    setCartItem(incrementItem(cartItems, product_increment_id));
+  };
+  const decrementCheckoutItem = (product_to_decrement) => {
+    setCartItem(decrementItem(cartItems, product_to_decrement));
+  };
+
+  const deleteCartItem = (product_To_Delete) => {
+    setCartItem(deletItem(cartItems, product_To_Delete));
   };
 
   const value = {
     toggleCart,
     setToggleCart,
     addItemToCart,
+    setCartItem,
     cartItems,
     cartCount,
     deleteCartItem,
     total,
+    incrementCheckOutItem,
+    decrementCheckoutItem,
   };
 
   return (

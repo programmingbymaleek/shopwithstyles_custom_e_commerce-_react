@@ -17,17 +17,19 @@ function CartDropDown() {
 
   return (
     <CartDropDownContainer>
-      <div className="cart-dropdown-container">
-        <div className="cart-items">
-          {cartItems.map((cartItem) => {
-            return (
-              <div key={cartItem.id}>
-                <CartItem cartItem={cartItem} />
-              </div>
-            );
-          })}
+      <div className="container">
+        <div className="cart-dropdown-container">
+          <div className="cart-items">
+            {cartItems.map((cartItem) => {
+              return (
+                <div key={cartItem.id}>
+                  <CartItem cartItem={cartItem} />
+                </div>
+              );
+            })}
+          </div>
+          <CustomButton btn_label={"Check out"} onClick={gotoCheckoutPage} />
         </div>
-        <CustomButton btn_label={"Check out"} onClick={gotoCheckoutPage} />
       </div>
     </CartDropDownContainer>
   );
@@ -36,6 +38,9 @@ function CartDropDown() {
 export default CartDropDown;
 
 const CartDropDownContainer = styled.div`
+  .container {
+    position: relative;
+  }
   .cart-dropdown-container {
     position: absolute;
     width: 240px;
@@ -45,8 +50,8 @@ const CartDropDownContainer = styled.div`
     padding: 20px;
     border: 1px solid black;
     background-color: white;
-    top: 90px;
-    right: 21rem;
+    right: 0rem;
+
     z-index: 5;
 
     .empty-message {

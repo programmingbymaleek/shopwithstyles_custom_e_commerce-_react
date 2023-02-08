@@ -4,12 +4,17 @@ import { CreateCartContext } from "../../contexts/cart.context";
 import { ProductQuickViewContext } from "../../contexts/product-quick-view-context";
 
 import styled from "styled-components";
+import CartItem from "../cart-items/cart-items";
 
 function ItemToCheckOut({ item }) {
   const { name, imageUrl, quantity, price, id, size } = item;
 
-  const { total, deleteCartItem } = useContext(CreateCartContext);
-  const { incrementItem, decrementItem } = useContext(ProductQuickViewContext);
+  const {
+    total,
+    deleteCartItem,
+    incrementCheckOutItem,
+    decrementCheckoutItem,
+  } = useContext(CreateCartContext);
   return (
     <ProductCheckOutContainer>
       <div className="main-product">
@@ -31,9 +36,35 @@ function ItemToCheckOut({ item }) {
           <div className="product-quanity">quantity: {quantity}</div>
           <div className="total"> total: {price}</div>
         </div>
-        <div className="product-quanity phidden">{quantity}</div>
+        <div className="product-quanity phidden">
+          <span
+            onClick={() => {
+              decrementCheckoutItem(item);
+            }}
+          >
+            -
+          </span>
+          {quantity}{" "}
+          <span
+            onClick={() => {
+              incrementCheckOutItem(id);
+            }}
+          >
+            +
+          </span>
+        </div>
         <div className="price phidden">{price}</div>
-        <div className="total phidden">{name}</div>
+        <div className="total phidden">
+          {name}{" "}
+          <span
+            style={{ marginLeft: "3rem" }}
+            onClick={() => {
+              deleteCartItem(item);
+            }}
+          >
+            X
+          </span>
+        </div>
       </div>
 
       {/* <div className="checkout-item-container">
@@ -109,7 +140,7 @@ const ProductCheckOutContainer = styled.div`
     }
     .product-quanity {
       flex-grow: 1;
-      margin-left: 5rem;
+      margin-left: 3rem;
     }
     .price {
       flex-grow: 1;

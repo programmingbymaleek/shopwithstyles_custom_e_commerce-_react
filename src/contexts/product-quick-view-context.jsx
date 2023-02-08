@@ -36,7 +36,6 @@ export const ProductQuickViewProvider = ({ children }) => {
     incrementItem,
     decrementItem,
   };
-  console.log(productToView);
   return (
     <ProductQuickViewContext.Provider value={value}>
       {children}

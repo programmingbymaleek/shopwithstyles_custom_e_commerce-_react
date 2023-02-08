@@ -23,7 +23,6 @@ function ProductOverView() {
     productToView.size = setSize;
     setShoeSize(setSize);
     setError("");
-    console.log(productToView);
   };
   const Navigate = useNavigate();
   const goBackToCollections = () => {

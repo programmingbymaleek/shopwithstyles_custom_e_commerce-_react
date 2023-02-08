@@ -100,8 +100,8 @@ function Navigation() {
             </Nav>
           </Navbar.Collapse>
         </Container>
-        {toggleCart && <CartDropDown />}
       </Navbar>
+      {toggleCart && <CartDropDown />}
       <Outlet />
     </NavigationContainer>
   );

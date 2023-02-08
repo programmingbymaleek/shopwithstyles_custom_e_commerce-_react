@@ -5,8 +5,11 @@ import ItemToCheckOut from "../itemToCheckout.component/itemTocheckout";
 import styled from "styled-components";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 function ItemCheckOut() {
-  const { cartItems } = useContext(CreateCartContext);
+  const { cartItems, total } = useContext(CreateCartContext);
+
+  const NavigateToCollections = useNavigate();
 
   const coupon = () => {
     alert("No coupon avalible at this time");
@@ -25,91 +28,92 @@ function ItemCheckOut() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   });
-  console.log(cartItems.length);
   return (
-    <CheckoutContainer className="container">
-      <div className={`${sticky ? "sticky" : ""}`}>
-        <div className="checkout-header">
-          <h1>Shopping Cart</h1>
+    <CheckoutContainer>
+      {cartItems.length < 1 ? (
+        <div className="container noItem-container">
+          <h1>Your shopping cart is empty</h1>
+          <p
+            onClick={() => {
+              NavigateToCollections("/collections");
+            }}
+          >
+            ..continue shopping
+          </p>
         </div>
-        <div className="checkout-options">
-          <div className="paypal">PayPal</div>
-          <div className="checkout">checkout</div>
-        </div>
-      </div>
-      <div className="product-header">
-        <p className="p-product">Product</p>
-        <p className="p-quantity">Quantity</p>
-        <p className="p-price">Price</p>
-        <p className="p-total">Total</p>
-      </div>
-      <div className="main-class">
-        {" "}
-        {cartItems.map((cartItem) => {
-          return cartItems.length < 2 ? (
-            <Fragment>
-              <ItemToCheckOut item={cartItem} />
-            </Fragment>
-          ) : (
-            <div>
-              <ItemToCheckOut item={cartItem} className="wisdom" />
-              {/* <hr /> */}
+      ) : (
+        <div className="container">
+          <div className={`${sticky ? "sticky" : ""}`}>
+            <div className="checkout-header">
+              <h1>Shopping Cart</h1>
             </div>
-          );
-        })}
-      </div>
-      <div className="checkout-sub-header">
-        <div className="checkout-sub-title">
-          Purchase <span>$35.02</span> more and recive Free Standard Shipping
-        </div>
-      </div>
+            <div className="checkout-options">
+              <div className="paypal">PayPal</div>
+              <div className="checkout">checkout</div>
+            </div>
+          </div>
+          <div className="product-header">
+            <p className="p-product">Product</p>
+            <p className="p-quantity">Quantity</p>
+            <p className="p-price">Price</p>
+            <p className="p-total">Total</p>
+          </div>
+          <div className="main-class">
+            {" "}
+            {cartItems.map((cartItem) => {
+              return (
+                <div key={cartItem.id}>
+                  <ItemToCheckOut item={cartItem} />
+                </div>
+              );
+            })}
+          </div>
+          <div className="checkout-sub-header">
+            <div className="checkout-sub-title">
+              Purchase <span>$35.02</span> more and recive Free Standard
+              Shipping
+            </div>
+          </div>
 
-      <div className="shipping-footer">
-        {" "}
-        <div className="coupon">
-          <form action="">
-            <input type="text" placeholder="Enter coupon code" />
-            <button type="button" onClick={coupon}>
-              Apply
-            </button>
-          </form>
-          <button type="button" onClick={promotion}>
-            View Active promotions
-          </button>
+          <div className="shipping-footer">
+            {" "}
+            <div className="coupon">
+              <form action="">
+                <input type="text" placeholder="Enter coupon code" />
+                <button type="button" onClick={coupon}>
+                  Apply
+                </button>
+              </form>
+              <button type="button" onClick={promotion}>
+                View Active promotions
+              </button>
+            </div>
+            <div className="cartTotal">
+              <div>
+                {" "}
+                <div className="subtotal b-bold">Subtotal</div>
+                <div className="subtotal-amount">${total}</div>
+              </div>
+              <div>
+                {" "}
+                <div className="shipping-header">Shipping Standard</div>
+                <div className="subtotal-amount">$({total / 10})</div>
+              </div>
+              <div>
+                {" "}
+                <div className="tax-header">Sale Tax</div>
+                <div className="subtotal-amount">$({total / 15})</div>
+              </div>
+              <hr />
+              <div>
+                {" "}
+                <div className="order-total b-bold">Order Total</div>
+                <div className="order-amount">${total}</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="cartTotal">
-          <div>
-            {" "}
-            <div className="subtotal b-bold">Subtotal</div>
-            <div className="subtotal-amount">$34.5</div>
-          </div>
-          <div>
-            {" "}
-            <div className="shipping-header">Shipping Standard</div>
-            <div className="subtotal-amount">$7.5</div>
-          </div>
-          <div>
-            {" "}
-            <div className="tax-header">Sale Tax</div>
-            <div className="subtotal-amount">$2.50</div>
-          </div>
-          <hr />
-          <div>
-            {" "}
-            <div className="order-total b-bold">Order Total</div>
-            <div className="order-amount">$50.50</div>
-          </div>
-        </div>
-      </div>
-
-      {/* <div className="checkout-container">
-      
-       
-
-        {cartItems.map((item) => {
-          return <ItemToCheckOut item={item} key={item.id} />;
-        })}
-      </div> */}
+      )}
     </CheckoutContainer>
   );
 }
@@ -117,6 +121,28 @@ function ItemCheckOut() {
 export default ItemCheckOut;
 
 const CheckoutContainer = styled.div`
+  .noItem-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 80vh;
+    letter-spacing: 0.3rem;
+    h1 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    p {
+      font-size: 24px;
+      color: green;
+      font-weight: 500;
+    }
+    p:hover {
+      color: blue;
+      cursor: pointer;
+    }
+  }
   .coupon button {
     width: 17rem;
     padding: 0.3rem;
@@ -267,7 +293,7 @@ const CheckoutContainer = styled.div`
     }
   }
 
-  @media screen and (max-width: 573px) {
+  @media screen and (max-width: 775px) {
     .shipping-footer {
     }
     .product-header {
