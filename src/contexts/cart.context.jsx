@@ -1,19 +1,25 @@
 import { createContext, useState, useEffect } from "react";
 
+const newFuc = (cartItems, productToadd) => {
+  const newobj = {
+    ...productToadd,
+    id: (productToadd.quantity += productToadd.id),
+  };
+  return addCartItem(cartItems, newobj);
+};
+
 const addCartItem = (cartItems, productToadd) => {
   const isItemAlreadyinCart = cartItems.find(
-    (cartItem) =>
-      cartItem.id === productToadd.id && cartItem.size === productToadd.size
+    (cartItem) => cartItem.id === productToadd.id
   );
-
   if (isItemAlreadyinCart) {
     return cartItems.map((cartItem) => {
       return cartItem.size === productToadd.size
-        ? { ...cartItem, quantity: (cartItem.quantity += 1) }
+        ? { ...cartItem, quantity: (productToadd.quantity += 1) }
         : cartItem;
     });
   }
-  //use statechange to change sizes
+
   return [...cartItems, { ...productToadd }];
 };
 

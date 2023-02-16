@@ -126,7 +126,10 @@ const CheckoutContainer = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-height: 80vh;
+    margin-top: 20vh;
+    min-height: 40vh;
+    border-top: 5px solid #212529;
+    border-bottom: 5px solid #212529;
     letter-spacing: 0.3rem;
     h1 {
       font-size: 3rem;

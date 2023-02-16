@@ -3,8 +3,10 @@ import styled from "styled-components";
 // import { ReactComponent as Banner } from '../../../assests/pics.jpg';
 import "./hero.styles.scss";
 import CustomButton from "../../button.component/button.component";
+import { useNavigate } from "react-router-dom";
 
 function HeroBanner() {
+  const navigate = useNavigate();
   return (
     <HeroContainer>
       <img
@@ -26,7 +28,12 @@ function HeroBanner() {
             perfect pair!
           </p>
           <div className="hero-btn">
-            <CustomButton btn_label="Shop now" />
+            <CustomButton
+              btn_label="Shop now"
+              onClick={() => {
+                navigate("./collections");
+              }}
+            />
           </div>
         </div>
 

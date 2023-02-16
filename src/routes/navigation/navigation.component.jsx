@@ -94,7 +94,11 @@ function Navigation() {
                     className="shopping-icon"
                     onClick={toggleCartContainer}
                   />
-                  <span className="item-count">{cartCount}</span>
+                  {cartCount > 0 ? (
+                    <span className="item-count">{cartCount}</span>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </Nav.Link>
             </Nav>
@@ -119,6 +123,19 @@ const NavigationContainer = styled.div`
   }
 
   .cart-icon-container {
+    .item-count {
+      position: absolute;
+      text-align: center;
+      top: 6px;
+      right: -3px;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 100%;
+      background-color: yellow;
+      color: black;
+      font-size: 14px !important;
+      padding-top: 0.19rem;
+    }
     width: 45px;
     height: 45px;
     top: -0.6rem;
