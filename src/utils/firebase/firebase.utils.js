@@ -13,7 +13,16 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { doc, getFirestore, getDoc, setDoc } from "firebase/firestore";
+import {
+  doc,
+  getFirestore,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD6pkHohXXrTwiPoUMoIyF0mH5B6QVOhKM",
@@ -40,6 +49,36 @@ export const signInWithGooglePopup = () =>
 
 //getting access to the database from fire store.. or initalizing database
 export const db = getFirestore();
+
+//adding collections and documents to fire-store using fireBase...
+
+export const addCollectionsAndDocumentsToFireStore = async (
+  collectionKeys,
+  objectToAdd
+) => {
+  const collectionRefrence = collection(db, collectionKeys);
+  const batch = writeBatch(db);
+  console.log(batch);
+  objectToAdd.forEach((object) => {
+    const docRefrence = doc(collectionRefrence, object.title.toLowerCase());
+    batch.set(docRefrence, object);
+  });
+  await batch.commit();
+  console.log('object added to fire store database...+"done"');
+};
+
+//getting  documents from firebase..
+export const getCollectionsAndDocumentFromFireBase = async () => {
+  const collectionRefrence = collection(db, "group");
+  const q = query(collectionRefrence);
+  const querySnapshot = await getDocs(q);
+  const groupMap = querySnapshot.docs.reduce((acc, docSnapShot) => {
+    const { title, items } = docSnapShot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+  return groupMap;
+};
 
 //creating user document from google Authentication
 export const createUserDocumentFromAuth = async (

@@ -28,7 +28,7 @@ function CartDropDown() {
               );
             })}
           </div>
-          <CustomButton btn_label={"Check out"} onClick={gotoCheckoutPage} />
+          <CustomButton btn_label={"go to cart"} onClick={gotoCheckoutPage} />
         </div>
       </div>
     </CartDropDownContainer>

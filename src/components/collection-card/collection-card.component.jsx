@@ -28,7 +28,7 @@ function CollectionCard({ products }) {
 
       {
         <CustomButton
-          btn_label={"Quickview"}
+          btn_label={"Quick view"}
           btntype={"inverted"}
           onClick={overView}
         />
@@ -58,7 +58,7 @@ const CollectionsContainer = styled.div`
     width: 80%;
     opacity: 0.7;
     position: absolute;
-    top: 255px;
+    top: 125px;
     display: none;
   }
 

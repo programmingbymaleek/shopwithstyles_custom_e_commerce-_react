@@ -1,13 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 
-const newFuc = (cartItems, productToadd) => {
-  const newobj = {
-    ...productToadd,
-    id: (productToadd.quantity += productToadd.id),
-  };
-  return addCartItem(cartItems, newobj);
-};
-
+/*
 const addCartItem = (cartItems, productToadd) => {
   const isItemAlreadyinCart = cartItems.find(
     (cartItem) => cartItem.id === productToadd.id
@@ -19,8 +12,17 @@ const addCartItem = (cartItems, productToadd) => {
         : cartItem;
     });
   }
-
   return [...cartItems, { ...productToadd }];
+};
+
+*/
+
+const addCartItem = (cartItems, productToadd) => {
+  if (cartItems.length < 1) {
+    return [{ ...productToadd, id: 1 }];
+  } else {
+    return [...cartItems, { ...productToadd, id: (cartItems.length += 1) }];
+  }
 };
 
 const incrementItem = (cartItems, product_increment_id) => {

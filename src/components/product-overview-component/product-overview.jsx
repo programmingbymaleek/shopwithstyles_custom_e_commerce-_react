@@ -29,7 +29,7 @@ function ProductOverView() {
     Navigate("/collections");
   };
 
-  const { name, price, quantity, id, imageUrl } = productToView;
+  const { name, price, quantity, shoe_id, imageUrl } = productToView;
 
   const addCartItem = () => {
     if (productToView.size === "") {
@@ -40,7 +40,7 @@ function ProductOverView() {
     // Navigate("/checkout-items");
   };
 
-  if (!productToView.id) {
+  if (!productToView.shoe_id) {
     return (
       <div>
         <button onClick={goBackToCollections}>Go to collections</button>
@@ -49,7 +49,7 @@ function ProductOverView() {
   }
   return (
     <Product_overview_container className="container">
-      <div className="product_container" key={id}>
+      <div className="product_container" key={shoe_id}>
         <div className="product_image-conatiner">
           <img src={`${imageUrl}`} alt={`${name}`} />
         </div>

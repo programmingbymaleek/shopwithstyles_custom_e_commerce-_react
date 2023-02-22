@@ -7,19 +7,27 @@ import styled from "styled-components";
 import { useEffect } from "react";
 function Collections() {
   const { productCollections } = useContext(Product_Context);
+  console.log("From collection componet..");
   const Navigate = useNavigate();
 
   return (
     <Collections_Cards className="container">
-      <div className="collections-container">
-        {productCollections.map((collection) => {
-          return (
-            <div key={collection.id}>
-              <CollectionCard products={collection} />
-            </div>
-          );
-        })}
-      </div>
+      {Object.keys(productCollections).map((title) => (
+        <div key={title} className="group_title">
+          <p>
+            <span>{title.toUpperCase()}</span>
+          </p>
+          <div className="collections-container">
+            {productCollections[title]
+              .filter((_, indexes) => indexes < 4)
+              .map((shoe) => (
+                <div key={shoe.shoe_id}>
+                  <CollectionCard products={shoe} />
+                </div>
+              ))}
+          </div>
+        </div>
+      ))}
     </Collections_Cards>
   );
 }
@@ -27,9 +35,19 @@ function Collections() {
 export default Collections;
 
 const Collections_Cards = styled.div`
+  .group_title {
+    margin: 2rem 0;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    span:hover {
+      cursor: pointer;
+    }
+  }
   .collections-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
+    font-weight: normal;
   }
 `;

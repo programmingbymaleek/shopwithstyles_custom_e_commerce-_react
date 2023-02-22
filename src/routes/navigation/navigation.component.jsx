@@ -11,6 +11,7 @@ import { SignOutUser } from "../../utils/firebase/firebase.utils";
 import { ReactComponent as CartIcon } from "../../assests/shopping-cart.svg";
 import CartDropDown from "../../components/cart-dropdown.component/cart-dropdown";
 import { CreateCartContext } from "../../contexts/cart.context";
+import Logo from "../../assests/wilmatech_logo_1.png";
 
 function Navigation() {
   const Navigate = useNavigate();
@@ -23,14 +24,23 @@ function Navigation() {
   };
   return (
     <NavigationContainer>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+        className="nav-conatiner"
+      >
         <Container>
           <Navbar.Brand
             onClick={() => {
               Navigate("/");
             }}
           >
-            WM
+            <div className="logoContainer">
+              {" "}
+              <img src={Logo} alt="logo" />
+            </div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -114,6 +124,22 @@ function Navigation() {
 export default Navigation;
 
 const NavigationContainer = styled.div`
+  .nav-conatiner {
+    min-height: 10vh;
+    font-size: 20px;
+  }
+  .logoContainer {
+    width: 14rem;
+    height: 4rem;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .logoContainer:hover {
+    cursor: pointer;
+  }
+
   .custom-nav-links {
     color: #212529 !important;
   }
