@@ -58,7 +58,7 @@ function Navigation() {
                   className="custom-nav-links"
                   style={{ color: "blue" }}
                   onClick={() => {
-                    Navigate("/men-shoes");
+                    Navigate("../collections/men");
                   }}
                 >
                   Men's Shoes
@@ -66,7 +66,7 @@ function Navigation() {
                 <Nav.Link
                   className="custom-nav-links"
                   onClick={() => {
-                    Navigate("/women-shoes");
+                    Navigate("../collections/women");
                   }}
                 >
                   Women's Shoes
@@ -74,7 +74,7 @@ function Navigation() {
                 <Nav.Link
                   className="custom-nav-links"
                   onClick={() => {
-                    Navigate("/kids-shoes");
+                    Navigate("../collections/kids");
                   }}
                 >
                   Kid's Shoes

@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import CollectionCard from "../collection-card/collection-card.component";
@@ -15,13 +16,23 @@ function ShoeGroup() {
   console.log("from shoe group component");
   console.log(productCollections[group]);
 
+  const [message, setMessage] = useState("searching...");
+
+  const Navigate = useNavigate();
+
+  function timer() {
+    setTimeout(() => {
+      setMessage("No item Found");
+    }, 5000);
+  }
+
   useEffect(() => {
     setProduct(productCollections[group]);
   }, [productCollections, group]);
   return (
-    <div>
+    <Collections_Cards>
       {product ? (
-        <Collections_Cards className="container">
+        <div className="container">
           {
             <div className="group_title">
               <p>
@@ -36,17 +47,31 @@ function ShoeGroup() {
               </div>
             </div>
           }
-        </Collections_Cards>
+        </div>
       ) : (
-        <div>undifined</div>
+        <div className="list-container">
+          {timer()}
+          <div>
+            <p>{message} </p>
+          </div>
+        </div>
       )}
-    </div>
+    </Collections_Cards>
   );
 }
 
 export default ShoeGroup;
 
 const Collections_Cards = styled.div`
+  .list-container {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-size: 20px;
+    }
+  }
   .group_title {
     margin: 2rem 0;
     font-size: 28px;
